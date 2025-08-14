@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 500px;
+            border: 1px solid black;
+            background-image: url(bg.jpg);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            /* background-size: contain; 이미지가 잘리지 않도록 하고, 나머지를 비움 */
+        }
+        .section {
+            border: 1px solid #777;
+            height: 700px;
+            background-image: url(bg.jpg);
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+    <section class="section" style="height: 1000px;"></section>
+</body>
+</html>
