@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 500px;
+            margin: 0 auto;
+            border: 1px solid black ;
+
+            overflow: hidden; /* 자식요소가 부모의 크기를 벗어나면 숨김 처리 */
+            /* 밑에 after와 동일하다 */
+        }
+
+        .box::after {
+            content: "";
+            display: block;
+            clear: both; /* float를 해제 */
+        }
+
+        .item {
+            border: 1px solid black;
+            /* 아이템에 플롯을 적용하면, 부모상자가 아이템을 포함하지 못하는 현상이 발생. */
+            /* 부모의 특정 문법으로 반드시 해소시켜줘야함. */
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="item">1</div>
+    </div>
+</body>
+</html>
