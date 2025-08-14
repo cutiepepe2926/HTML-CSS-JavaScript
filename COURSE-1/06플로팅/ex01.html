@@ -26,11 +26,46 @@
             /* 부모의 특정 문법으로 반드시 해소시켜줘야함. */
             float: left;
         }
+
+        .wrap {
+            width: 500px;
+            margin: 0 auto;
+            border: 1px solid black;
+            overflow: hidden;   /* 자식요소가 부모의 크기를 벗어나면 숨김 처리 */
+        }
+
+        .wrap::after {
+            content: "";
+            display: block;
+            clear: both; /* float를 해제 */
+        }
+
+        .left {
+            float: left;
+            background-color: lightblue;
+        }
+
+
+        .right {
+            float: right;
+            background-color: lightgreen;
+        }
     </style>
 </head>
 <body>
     <div class="box">
-        <div class="item">12</div>
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+    </div>
+
+    <div class="wrap">
+        <div class="left">왼쪽</div>
+        <div class="left">왼쪽</div>
+        <div class="right">오른쪽</div>
     </div>
 </body>
 </html>
