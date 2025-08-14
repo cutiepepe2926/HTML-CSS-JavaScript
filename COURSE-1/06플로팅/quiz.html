@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap_first {
+            width: 800px;
+            border: 1px solid black;
+            overflow: hidden;   /* 자식요소가 부모의 크기를 벗어나면 숨김 처리 */
+        }
+
+        .wrap_first::after {
+            content: "";
+            display: block;
+            clear: both; /* float를 해제 */
+        }
+
+        .wrap_first > .item_first {
+            border: 1px solid black;
+            width: 33%;
+            float: left;
+        }
+
+        .second {
+            padding-top: 20px;
+        }
+
+        .wrap_second {
+            width: 50%;
+            border: 1px solid black;
+            overflow: hidden;   /* 자식요소가 부모의 크기를 벗어나면 숨김 처리 */
+        }
+
+        .wrap_second > .item_second_left {
+            border: 1px solid black;
+            width: 45%;
+            float: left;
+        }
+        .wrap_second > .item_second_right {
+            border: 1px solid black;
+            width: 45%;
+            float: right;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="first">
+        <h3>1. 너비는 800px에 3칸을 배치해보세요.</h3>
+        <div class="wrap_first">
+            <div class="item_first">3칸배치</div>
+            <div class="item_first">3칸배치</div>
+            <div class="item_first">3칸배치</div>
+        </div>
+
+    </div>
+    <div class="second">
+        <h3>1. 너비는 50%에 두 상자를 양쪽으로 각각 배치해보세요..</h3>
+        <div class="wrap_second">
+            <div class="item_second_left">너비:45%</div>
+            <div class="item_second_right">너비:45%</div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -4,8 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .box {
+            width: 600px;
+            margin: 0 auto;
+            border: 1px solid black;
+            overflow: hidden; /* 자식요소가 부모의 크기를 벗어나면 숨김 처리 */
+        }
+
+        .item {
+            width: 16.6666%;
+            height: 100px;
+            margin: 10px;
+            float: left;
+            background-color: lightcoral;
+            text-align: center;
+            line-height: 100px; /* 수직 중앙 정렬 */
+        }
+    </style>
 </head>
 <body>
     <h3>카드 상자 분할하기</h3>
+    <div class="box">
+        <div class="item">박스</div>
+        <div class="item">박스</div>
+        <div class="item">박스</div>
+        <div class="item">박스</div>
+        <div class="item">박스</div>
+        <div class="item">박스</div>
+    </div>
 </body>
 </html>
