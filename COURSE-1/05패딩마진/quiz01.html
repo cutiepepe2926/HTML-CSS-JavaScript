@@ -59,6 +59,18 @@
             border: 1px solid black;
             box-sizing: border-box; /* 패딩을 포함한 너비 계산 */
         }
+
+        .wrap {
+            width: 1000px;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+
+        .wrap > .content2 {
+            border: 1px solid black;
+            padding: 20px;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
@@ -78,12 +90,20 @@
     <img src="" alt="">
 </article>
 
-<section>
+<!-- <section>
     <div class="quiz">
         오늘의 퀴즈
     </div>
     <div class="content">
         이 컨텐츠는....패딩을 포함한 너비가 1000px으로 만들어 주세요
+    </div>
+</section> -->
+<section>
+    <div class="wrap">
+        <h3>오늘의 퀴즈</h3>
+        <div class="content2">
+        이 컨텐츠는....패딩을 포함한 너비가 1000px으로 만들어 주세요
+        </div>
     </div>
 </section>
     
