@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+        .list {
+            width: 50%;
+            border: 1px solid black;
+            margin: 0 auto;
+            position: relative;
+            /* position: relative;를 지정하면 자식 요소의 position이 absolute일 때 기준점이 된다. */
+            /* 부모가 기준점이 된다. */
+        }
+
+        p {
+            border: 1px solid black;
+            height: 100px;
+        }
+        .box1 {background-color: red;}
+        .box2 {
+            background-color: green;
+            position: absolute;
+            /* 기준이 되는 부모는 지정을 안하면 보통 Body가 기준이 된다. */
+            /* 기준점으로 움직이고 싶은 부모님 상자에 position: relative;를 지정해주면 된다. */
+            /* 3D형태로 생각해보자. */
+            /* box2를 z축으로 들어올린거다. */
+            left: 10px;
+            top: 10px;
+            /* 들어올린 얘를 좌측으로 10px, 위로 10px 이동시킨다. */
+        }
+        .box3 {
+            background-color: blue;}
+
+    </style>
+</head>
+<body>
+    <div class="list">
+        <div class="content">
+            <p class="box1">포지션</p>
+            <p class="box2">포지션</p>
+            <p class="box3">포지션</p>
+        </div>
+    </div>
+</body>
+</html>
