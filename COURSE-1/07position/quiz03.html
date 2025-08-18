@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #header {
+            width: 100%;
+            z-index: 5;
+            text-align: center;
+            background-image: url('./images/bg.png');
+            
+        }
+        .logo {
+            padding: 10px 0;
+        }
+        ul, li {
+            list-style: none;
+        }
+        .gnb {
+            background-color: black;
+            text-align: center;
+        }
+        .gnb > ul > li{
+            display: inline-block;
+        }
+        .gnb > ul > li > a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+
+        }
+        .gnb > ul > li > a:hover {
+            background-color: gray;
+            color: white;
+        }
+
+        .upper_list {
+            text-align: center;
+            
+        }
+        .upper_list > ul {
+            display: inline-block;
+        }
+        .upper_list > ul > li {
+            display: inline-block;
+        }
+
+        .action-btn {
+            position: fixed;
+            right: 40px;
+            top: 40px;
+            z-index: 10;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background-color: red;
+        }
+
+        .mid-menu {
+            background-color: white;
+            text-align: center;
+            position: sticky;
+            top: 0;
+        }
+
+        .mid-menu > ul {
+            display: inline-block;
+        }
+        .mid-menu > ul > li{
+            display: inline-block;
+            padding: 10px;
+            
+        }
+
+        #lower_section {
+            text-align: center;
+            position: relative;
+            
+        }
+        #lower_section > .left {
+            position: absolute;
+            top: 0;
+            left: 400px;
+            width: 200px;
+            height: 100%;
+        }
+
+        #lower_section > .right {
+            position: absolute;
+            top: 0;
+            right: 400px;
+            width: 200px;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <img src="./images/logo.jpg" alt="logo" class="logo">
+        <a href="TOP" class="action-btn">TOP</a>
+    </header>
+        <div class="gnb">
+            <ul>
+                <li><a href="#">메뉴1</a></li>
+                <li><a href="#">메뉴2</a></li>
+                <li><a href="#">메뉴3</a></li>
+                <li><a href="#">메뉴4</a></li>
+            </ul>
+        </div>
+        <div class="upper_list">
+            <ul>
+                <li><img src="./images/item01.png" alt="item1" class="item"><br>iPhone(디스플레이 or 플롯)</a></li>
+                <li><img src="./images/item02.png" alt="item1" class="item"><br>iPod</a></li>
+                <li><img src="./images/item03.png" alt="item1" class="item"><br>iPad</a></li>
+                <li><img src="./images/item04.png" alt="item1" class="item"><br>iMac</a></li>
+            </ul>
+        </div>
+        <div class="mid-menu">
+            <ul>
+                <li >아이콘 </li>
+                <li >아이콘 </li>
+                <li >아이콘 </li>
+                <li > 이거는 스티키</li>
+            </ul>
+        </div>
+            
+        <section id="lower_section" style="background-image: url('./images/bg.png');">
+            <img src="./images/ipad.jpg" alt="ipad" class="ipad">
+            <aside class="left">
+                <img src="./images/side01.png" alt="side1" class="side">
+                <img src="./images/side02.png" alt="side1" class="side">
+            </aside>
+            <aside class="right">
+                <img src="./images/side03.png" alt="side1" class="side">
+                <img src="./images/side04.png" alt="side1" class="side">
+            </aside>
+        </section>
+        
+</body>
+</html>
