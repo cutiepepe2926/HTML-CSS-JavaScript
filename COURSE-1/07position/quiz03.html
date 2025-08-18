@@ -16,6 +16,9 @@
             background-image: url('./images/bg.png');
             
         }
+        body {
+            background-image: url('./images/bg.png');
+        }
         .logo {
             padding: 10px 0;
         }
@@ -44,6 +47,8 @@
 
         .upper_list {
             text-align: center;
+            background: white;
+            
             
         }
         .upper_list > ul {
@@ -63,6 +68,7 @@
             text-align: center;
             line-height: 50px;
             background-color: red;
+            z-index: 100000;
         }
 
         .mid-menu {
@@ -70,6 +76,7 @@
             text-align: center;
             position: sticky;
             top: 0;
+            z-index: 1000;
         }
 
         .mid-menu > ul {
@@ -78,18 +85,20 @@
         .mid-menu > ul > li{
             display: inline-block;
             padding: 10px;
+            z-index: 1000;
             
         }
 
         #lower_section {
-            text-align: center;
+            width: 700px;
+            margin: 0 auto;
             position: relative;
             
         }
         #lower_section > .left {
             position: absolute;
             top: 0;
-            left: 400px;
+            left: -220px;
             width: 200px;
             height: 100%;
         }
@@ -97,7 +106,7 @@
         #lower_section > .right {
             position: absolute;
             top: 0;
-            right: 400px;
+            right: -220px;
             width: 200px;
             height: 100%;
         }
