@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box {
+            width: 500px;
+            border: 1px solid black;
+            margin: 0 auto;
+            position: relative;
+            /* 2번규칙 */
+            padding: 5px;
+            overflow: hidden;
+        }
+        .icon {
+            position: absolute;
+            /* 1번규칙 */
+            left: 15px;
+            top: 15px;
+            width: 50px;
+            height: 50px;
+
+        }
+        .under_icon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+        }
+        .content {
+            padding-left: 70px; /* 아이콘의 너비 + 여백 */
+            box-sizing: border-box;
+        }
+        .content > textarea {
+            width: 100%;
+            box-sizing: border-box;
+            min-height: 150px;
+            padding: 10px;
+            font-size: 13px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+        }
+        .control {
+            overflow: hidden;
+        }
+        .left {
+            float: left;
+            
+        }
+        .left > input {
+            display: block;
+        }
+        .right {
+            float: right;
+        }
+        .under {
+            margin: 0 auto;
+            position: relative;
+            width: 500px;
+            padding: 5px;
+            border: 1px solid black;
+            overflow: hidden;
+        }
+        .under > .under_left {
+            width: 70%;
+            box-sizing: border-box;
+            display: block;
+            float: right;
+            overflow: hidden;
+
+        }
+        .under > .under_right {
+            float: right;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .title {
+            font-weight: bold;
+            font-size: 20px;
+            /* margin-bottom: 2px; */
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img src="icon.png" alt="프로필" class="icon">
+        <div class="content">
+            <textarea></textarea>
+            <div class="control">
+                <div class="left">
+                    <input type="text">
+                    <input type="text" style ="margin-top: 5px;">
+                </div>
+                <button type="button" class="right">등록버튼</button>
+            </div>
+        </div>
+    </div>
+    <div class="under">
+            <img src="icon.png" alt="프로필" class="under_icon">
+            
+            <div class="under_right">
+                <button type="button" class="right">수정</button>
+                <button type="button" class="right">삭제</button>
+        </div>
+        <div class="under_left">
+                <p class="title">제목</p>
+                <p class="under_content">내용</p>
+            </div>
+</body>
+</html>

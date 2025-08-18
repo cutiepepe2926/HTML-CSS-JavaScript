@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #header {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            background-color: white;
+            z-index: 5;
+        }
+        ul, li {
+            list-style: none;
+        }
+        .logo {
+            text-align: center;
+            padding: 10px 0;
+        }
+        .logo > .logo_img {
+            width: 100px;
+            height: 100px;
+        }
+        .gnb {
+            background-color: cadetblue;
+            text-align: center;
+        }
+        .gnb > ul > li{
+            display: inline-block;
+        }
+        .gnb > ul > li > a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: yellowgreen;
+
+        }
+        .gnb > ul > li > a:hover {
+            background-color: darkcyan;
+            color: white;
+        }
+        #section {
+            background-color: lightgreen;
+            height: 1000PX;
+            margin-top: 168PX;
+        }
+        .action-btn {
+            position: fixed;
+            right: 10px;
+            top: 10px;
+            z-index: 10;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <header id="header">
+        <div class="logo">
+            <img src="icon.png" alt="로고" class="logo_img">
+        </div>
+        <nav class="gnb">
+            <ul>
+                <li><a href="#">메뉴</a></li>
+                <li><a href="#">메뉴</a></li>
+                <li><a href="#">메뉴</a></li>
+                <li><a href="#">메뉴</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="action-btn">TOP</div>
+    <section id="section">
+        .......내용........
+    </section>
+</body>
+</html>
