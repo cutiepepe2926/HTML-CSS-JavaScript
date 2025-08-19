@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+
+        /* 공통적인 부분으로 선언할 내용은 바깥에서 처리 */
+        /* 반응형 디자인은 너비를 %로 처리한다. */
+        .box {
+                width: 80%;
+                margin: 0 auto;
+            }
+        
+        @media(min-width: 1240px) {
+            /* 6개 */
+            .box > li {
+                float: left;
+                width: 16.6666%;
+            }
+        }
+        @media(max-width: 1239px) and (min-width:767px) {
+            /* 4개 */
+            .box > li {
+                float: left;
+                width: 25%;
+            }
+        }
+        @media(max-width: 766px) {
+            /* 2개 */
+            .box > li {
+                float: left;
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <ul class="box">
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+        <li>박스</li>
+    </ul>
+</body>
+</html>
