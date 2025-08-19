@@ -1,0 +1,132 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul,li,ol,dd,dl {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 767이상 */
+@media(min-width:767px) {
+    #wrap {
+        width: 960px;
+        margin: 0 auto;
+    }
+    #wrap .logo {
+        background-image: url('bg.png');
+        height: 280px;
+    }
+    #wrap .logo > h3 {
+        padding: 20px;
+        font-size: 30px;
+        color: yellow;
+        
+    }
+    #wrap .gnb {
+        background-color: red;
+        text-align: center;
+        
+    }
+    #wrap .gnb ul li {
+        display: inline-block;
+    }
+    #wrap .gnb ul li a {
+        display: block;
+        padding: 10px 20px;
+        color: #fff;
+    }
+    #wrap .gnb ul li a:hover {
+        color: black;
+    }
+    section {
+        
+        overflow: hidden;
+    }
+    section > .left {
+        float: left;
+        width: 700px;
+        padding: 20px;
+    }
+    section > .right {
+        float: right;
+        width: 200px;
+        padding: 10px;
+        background-color: wheat;
+        height: 500px;
+    }
+    #footer {
+        background-color: black;
+        text-align: center;
+        color: #fff;
+        padding: 10px 0;
+    }
+}
+
+/* 미디어쿼리를 선언. 모바일 디자인 */
+@media(max-width:766px) {
+    #warp {
+        width: 766px;
+        margin: 0 auto;
+    }
+    .logo {
+        background-image: url('bg.png');
+        height: 100px;
+    }
+    .logo > h3 {
+        /* font-size: 15px; */
+        color: yellow;
+    }
+    #wrap .gnb {
+        background-color: red;
+        text-align: center;
+        border-bottom: white;
+    }
+    #wrap .gnb ul li {
+        display: block;
+        
+        
+    }
+    #wrap .gnb ul li a {
+        display: block;
+        padding: 10px 20px;
+        color: #fff;
+    }
+    #wrap .gnb ul li a:hover {
+        color: black;
+    }
+    section > .left {
+        width: 100%;
+        padding: 20px;
+    }
+    .left > * {
+        padding: 10px;
+    }
+    .right {
+        width: 100%;
+        max-height: 100%;
+        background-color: wheat;
+        height: auto;
+        padding: 10px;
+    }
+    .right > img {
+        width: 95%;
+        box-sizing: border-box;
+        padding: 5px;
+    }
+    
+    #footer {
+        background-color: black;
+        text-align: center;
+        color: #fff;
+        padding: 10px 0;
+    }
+}
