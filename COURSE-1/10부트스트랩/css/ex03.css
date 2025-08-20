@@ -2,6 +2,9 @@
     padding: 0px;
     margin: 0px;
 }
+ul, ol, dl, li {
+    list-style: none;
+}
 img {
     max-width: 100%;
     height: auto;
@@ -53,9 +56,12 @@ img {
     border: 1px solid beige;
     position: relative;
 }
-
 .blog-content {
     padding: 10px;
+}
+.blog-content-under {
+    padding: 10px;
+    overflow: hidden;
 }
 
 .blog-content > p {
@@ -63,12 +69,48 @@ img {
     font-size: 13px;
     height: 100px;
 }
+.blog-price-under {
+    padding: 0px;
+    margin: 0px;
+}
+
+.blog-price-under > p {
+    font-size: 13px;
+    float: left;
+}
+.blog-inner-under > p {
+    font-size: 13px;
+    padding-left: 10px;
+}
 .blog-price {
+    overflow: hidden;
+}
+.blog-price-under {
     overflow: hidden;
 }
 .blog-price > ul {
     float: left;
     overflow: hidden;
+}
+.blog-content-under > p {
+    float: left;
+}
+.blog-content-under > ul {
+    float: left;
+    overflow: hidden;
+}
+.blog-price-under > ul > li {
+    float: left;
+    list-style: none;
+}
+.blog-price-under > ul > li > .glyphicon.glyphicon-heart {
+    font-size: small;
+    color: red;
+    padding: 0px 10px;
+}
+.blog-price-under > ul > li > .glyphicon.glyphicon-shopping-cart {
+    font-size: small;
+    color: green;
 }
 .blog-price > ul > li {
     float: left;
@@ -83,6 +125,22 @@ img {
     float: right;
     font-size: 12px;
 }
+.blog-price-under > strong {
+    float: right;
+    font-size: 12px;
+}
+.second {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.second > p {
+    font-size: 13px;
+}
+.third {
+    height:50px;
+    position: relative;
+}
 .blog-hover {
     position: absolute;
     left: 0;
@@ -94,6 +152,18 @@ img {
     opacity: 0;
     /* 투명도 */
 }
+.blog-hover-under {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    box-sizing: border-box;
+}
+.blog-hover-under > ul {
+    display: flex;
+}
 .blog-hover > a {
     color: white;
     font-weight: 900;
@@ -101,6 +171,9 @@ img {
 
 .blog-inner:hover > .blog-hover {
     opacity: 100;
+}
+.blog-inner-under:hover .blog-hover-under {
+    opacity: 1;
 }
 
 /* 블로그 스타일을 5칸으로 변경 */
