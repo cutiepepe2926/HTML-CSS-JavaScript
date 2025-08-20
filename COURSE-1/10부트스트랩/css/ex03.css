@@ -160,6 +160,7 @@ img {
     height: 100%;
     opacity: 0;
     box-sizing: border-box;
+    transition: all 1s ease-in-out;
 }
 .blog-hover-under > ul {
     display: flex;
