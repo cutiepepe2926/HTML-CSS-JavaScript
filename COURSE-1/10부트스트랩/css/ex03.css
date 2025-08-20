@@ -98,3 +98,15 @@ img {
     color: white;
     font-weight: 900;
 }
+
+.blog-inner:hover > .blog-hover {
+    opacity: 100;
+}
+
+/* 블로그 스타일을 5칸으로 변경 */
+@media(min-width:1200px) {
+    .blog-style.col-lg-2 {
+      /* 두 클래스를 같이 갖고있는 애들이라는 의미   */
+      width: 20%;
+    }
+}
