@@ -1,0 +1,41 @@
+.form-control {
+    border-radius: 0;
+}
+.form-control:focus {
+    border-color: #ccc;
+    box-shadow: none;
+}
+.btn {
+    border-radius: 0;
+}
+
+/* 1. 동일한 선택를 이용해서 디자인 덮음() */
+/* 
+.navbar-brand {
+    padding: 10px 20px;
+} 
+*/
+
+/* 2. 사용자 정의 클래스를 만들어서 추가 */
+.my-navbar {
+    padding: 10px 20px;
+}
+.navbar {
+    border-radius: 0;
+}
+.navbar-inverse {
+    background-color: #263238;
+    border-color: #263238;
+}
+/* 호버 */
+.navbar-inverse .navbar-nav > li > a:hover {
+    background-color: #304047;
+    color: #fff;
+}
+
+
+/* 캐러셀 디자인 */
+.carousel-control.right,
+.carousel-control.left {
+    background-image: none;
+}
