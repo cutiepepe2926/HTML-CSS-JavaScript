@@ -2,5 +2,9 @@ hello git world!
 
 does it work?
 
+<<<<<<< HEAD
 
-dfsafsalkjfds
+this is right things okay?
+=======
+let's test conflict
+>>>>>>> 7c2af83da51741bc00d5c92f9571a5f6e1ef1069
