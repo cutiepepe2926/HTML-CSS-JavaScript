@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+    //1~12월 사이의 월수를 입력을 받습니다.
+    //3~5는 봄, 6~8은 여름, 9~11은 가을, 12~2는 겨울
+    //입력받은 월수와, 해당 계절을 switch 절을 통해 출력해주세요.
+
+    let month = parseInt(prompt("월수를 입력해주세요."));
+    switch(month) {
+        case 12:
+        case 1:
+        case 2:
+            document.write("겨울");
+            break;
+        case 3:
+        case 4:
+        case 5:
+            document.write("봄");
+            break;
+        case 6:
+        case 7:
+        case 8:
+            document.write("여름");
+            break;
+        case 9:
+        case 10:
+        case 11:
+            document.write("가을");
+            break;
+        default:
+            document.write("월 수를 제대로 입력해주세요.");
+
+    }
+   </script>
+</body>
+</html>
