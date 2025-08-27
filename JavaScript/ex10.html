@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        let point = parseInt( prompt("점수를 입력하세요") );
+
+        //이 점수에 따라서 학점부여
+        if(point >= 90) {
+        
+            if(point >= 95) {
+                document.write("A+학점");
+            } else { //90~94
+                document.write("A학점");
+            }
+
+        } else if(point >= 80) { //80~89점
+            document.write("B학점");
+        } else if(point >= 70) {
+            document.write("C학점");
+        } else {
+            document.write("재수강 입니다");
+        }
+
+    </script>
+
+</body>
+</html>
