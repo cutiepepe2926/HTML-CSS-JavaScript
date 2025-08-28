@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1. 사용자에게 먹고싶은 음식을 입력받습니다.
+        //2. 입력받은 음식을 []에 저장합니다.
+        //3. 그만을 입력하면, 반복문을 종료하고, 입력받은 배열을 출력해주세요.
+
+        var foods = [];
+        let end = true;
+        
+        while(end == true){
+            foods.push(prompt("먹고 싶은 음식을 입력해주세요. \n[그만]을 입력하시면 종료합니다!"));
+            if(foods.includes("그만")==true){
+                end = false;
+            }
+        }
+        for(var index in foods){
+            if(foods[index]=="그만"){
+                break;
+            }
+            else document.writeln(foods[index]);
+        }
+    </script>
+</body>
+</html>
