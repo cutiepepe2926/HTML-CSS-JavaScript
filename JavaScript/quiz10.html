@@ -21,6 +21,7 @@
 
         */
 
+        /*
         let x = parseInt(prompt("어떤 수 x를 입력해주세요."));
         let i = 1;
         let sum = 0;
@@ -32,7 +33,34 @@
         }
 
         document.write("약수들의 합 : "+sum);
+        */
 
+        // 어떤 수를 입력받아서, x까지의 소수(약수의 개수가 2개인 수)의 합계를 구하라
+        // x = 12, 소수 = 2,3,5,7,11, 합계 28
+        //소수의 판별은 약수의 개수가 2개인지 체크
+
+        let y = parseInt(prompt("어떤 수 x를 입력해주세요."));
+        let j = 2;
+        let sum_medicine = 0;
+        let check_medicine = 0;
+        for(j;j<y+1;j++){
+
+            for(let q=1; q<j+1;q++){
+                if(j%q==0) {
+                    check_medicine++;
+                }
+                else continue;
+            }
+            if(check_medicine==2){
+                sum_medicine+=j;
+                check_medicine =0;
+            }
+            else {
+                check_medicine =0;
+                continue;
+            }
+        }
+        document.write("소수들의 합 : "+sum_medicine);
     </script>
 
 </body>

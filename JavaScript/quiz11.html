@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사칙연산 게임</title>
+</head>
+<body>
+    <h1>사칙연산 게임</h1>
+    <p>덧셈과 뺄셈 문제를 풀어보세요!</p>
+    
+    <script>
+        let ok = 0; // 정답카운트
+        let no = 0; // 오답카운트
+        
+        while (true) {
+            let correct = 0;
+            
+            const a = Math.floor(Math.random() * 100) + 1;
+            const b = Math.floor(Math.random() * 100) + 1;
+            
+            correct = a-b;
+            const answer = parseInt(prompt(a + " - " + b + " = ?\n[문제를 그만 푸시려면 0을 입력하세요.]" )); // 입력받은 수
+            
+            if (answer === 0) {
+                break;
+            }
+            
+            if (answer === correct) {
+                alert("정답입니다");
+                ok++;
+            } else {
+                alert("틀렸는데요?");
+                no++;
+            }
+        }
+
+        alert("정답: " + ok + "오답: " + no);
+
+    </script>
+</body>
+</html>
