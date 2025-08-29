@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 1단계: 층수 입력 및 2차원 배열 생성
+        // TODO: 사용자로부터 층수를 입력받아 2차원 배열을 생성하세요
+        // 1. prompt()로 층수를 입력받기
+        // 2. 입력받은 층수만큼 2차원 배열 생성
+        // 3. 각 층을 빈 배열로 초기화
+        // 4. 생성된 배열 구조 출력
+
+        // 예시:3
+        // 층수 입력: 3
+        // 결과: [[], [], []]
+        //let floorCount = parseInt(prompt("층수를 입력하세요"));
+
+        //let floor = [];
+        //for(let i = 0; i < floorCount; i++) {
+        //    floor[i] = [];
+        //}
+        //console.log(floor);
+        /////////////////////////////////////////////////////////////////////
+        // 2단계: 각 층에 사람 배정
+        // TODO: 각 층에 사람의 이름을 입력받아 저장하세요
+        // 1. while문을 사용하여 반복 입력받기
+        // 2. 층수와 이름을 입력받아 해당 층에 저장
+        // 3. "그만"을 입력하면 반복 종료
+        // 4. 최종 결과 출력
+
+        // 예시:
+        // 층: 1
+        // 이름: 김철수
+        // 층: 2
+        // 이름: 이영희
+        // 층: 2
+        // 이름: 홍길동
+        // 층: 그만
+
+        // 반복문으로 결과 출력
+        // 결과:
+        // 1층: 김철수
+        // 2층: 이영희, 홍길동
+        // 3층: 비어있음
+
+        let floorCount2 = parseInt(prompt("층수를 입력하세요"));
+
+        let floor2 = [];
+        for(let i = 0; i < floorCount2; i++) {
+            floor2[i] = [];
+        }
+        console.log(floor2);
+
+        let running=true;
+        let floorSelect;
+        let hostSelect;
+        while(running){
+            let temp = prompt("층을 입력하세요.");
+            if(temp=='그만'){
+                running=false;
+                continue;
+            }
+            else {
+                floorSelect = parseInt(temp);
+            }
+            let hostSelect = prompt("거주자를 입력하세요.");
+            floor2[floorSelect-1].push(hostSelect);
+        }
+        for(let i=0;i<floor2.length;i++){
+            console.log((i+1)+"층: ")
+            for(let j=0; j<floor2.length;j++){
+                if(typeof(floor2[i][j])==undefined){
+                    continue;
+                }
+                console.log(floor2[i][j]+", ");
+            }
+        }
+        for(let i=0;i<floor2.length;i++){
+            document.write((i+1)+"층: ");
+            for(let j=0; j<floor2[i].length;j++){
+                if(typeof(floor2[i][j])=="undefined"){
+                    continue;
+                }
+                document.write(floor2[i][j]+", ");
+            }
+        }
+    </script>
+</body>
+</html>
