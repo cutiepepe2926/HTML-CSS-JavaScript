@@ -14,6 +14,19 @@ public class DrawShape extends Frame{
         };
         Triangle t = new Triangle(p);
         Circle c = new Circle(new Point(150,150),50);
+
+        //원 그리기
+        g.drawOval(c.center.x, c.center.y, c.r, c.r);
+
+        //직선 3개로 삼각형 그리기
+        g.drawLine(t.p[0].x,t.p[0].y , t.p[1].x, t.p[1].y);
+        g.drawLine(t.p[1].x,t.p[1].y , t.p[2].x, t.p[2].y);
+        g.drawLine(t.p[2].x,t.p[2].y , t.p[0].x, t.p[0].y);
+    }
+    DrawShape(String title){
+        super(title);
+        setSize(300, 300);
+        setVisible(true);
     }
 }
 
