@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //문제 1: 별찍기 (레벨 1)
+//- 숫자를 받아서 해당 개수만큼 별을 출력하는 함수 printStar를 만들어보세요.
+//- 반환값이 없는 함수입니다.
+
+let num=0; 
+num = parseInt(prompt("출력할 별의 개수를 입력해주세요."));
+printStar(num);
+function printStar(params) {
+    let star=["*"];
+    console.log(star[0].repeat(params));
+}
+
+//문제 2: 현재 시간 출력 (레벨 1)
+//- 현재 시간을 "현재 시간: [시간]" 형태로 출력하는 함수 showTime를 만들어보세요.
+//- 현재 시간은 아래 함수로 구할수 있습니다.
+
+let now = new Date();
+let hours = now.getHours();      // 시 (0-23)
+let minutes = now.getMinutes();  // 분 (0-59)
+let seconds = now.getSeconds();  // 초 (0-59)
+//- 반환값이 없는 함수입니다.
+
+function showTime(hours, minutes, seconds){
+    console.log("현재 시간 : "+hours+"시 "+minutes+"분 "+seconds+"초");
+}
+showTime(hours,minutes,seconds);
+
+//문제 3: 짝수 판별 (레벨 2)
+//- 숫자를 받아서 짝수인지 홀수인지 판별하는 함수 isEven을 만들어보세요.
+//- 짝수면 true, 홀수면 false를 반환하세요.
+
+function isEven(num) {
+    let boolean = true;
+    num%2==0? boolean=true: boolean=false;
+    return boolean;
+}
+
+let num2=0; 
+num2 = parseInt(prompt("짝수인지 홀수인지 판별할 숫자를 입력해주세요."));
+console.log("true면 짝수, false면 홀수 결과: "+isEven(num2));
+
+//문제 4: 원의 넓이 (레벨 2)
+//- 반지름을 받아서 원의 넓이를 계산하는 함수 circleArea를 만들어보세요.
+//- 원의 넓이 = π × 반지름² (π는 3.14159 사용)
+
+function circleArea(radius){
+    let result = 0;
+    const PI=3.14159;
+    result = radius * radius * PI;
+    return result;
+}
+
+let num3=0; 
+num3 = parseInt(prompt("반지름을 입력해주세요."));
+console.log("원의 넓이 : "+circleArea(num3));
+
+//문제 5: 약수 개수 (레벨 3)
+//- 양의 정수를 받아서 약수의 개수를 세는 함수 countDiv를 만들어보세요.
+//- 예시: 12의 약수는 1, 2, 3, 4, 6, 12이므로 6개
+
+function countDiv(pos_num) {
+    let result = 0;
+    for(let i=1; i<pos_num+1;i++){
+        if(pos_num%i==0){
+            result += 1;
+        }
+        else continue;
+    }
+    return result;
+}
+let num4=0; 
+num4 = parseInt(prompt("약수의 개수를 구할 양의 정수를 입력해주세요."));
+console.log(num4+"의 약수의 개수 : "+countDiv(num4));
+//문제 6: 절대값 반환 (레벨 3)
+//- 숫자를 받아서 절대값을 반환하는 함수 abs를 만들어보세요.
+//- 예시: abs(-5) → 5, abs(3) → 3
+function abs(abs_num){
+    if(abs_num<0){
+        return abs_num*(-1);
+    }
+    else return abs_num;
+}
+let num5=0; 
+num5 = parseInt(prompt("절대값으로 변환할 숫자를 입력해주세요."));
+console.log(num5+"의 절대값 : "+abs(num5));
+//문제 7: 최대값 반환 (레벨 4)
+//- 세 개의 숫자를 받아서 가장 큰 수를 반환하는 함수 max를 만들어보세요.
+//- Math.max() 함수는 사용하지 마세요.
+function max(one,two,three){
+    let result=one;
+    if(result<two){
+        result=two;
+    }
+    if(result<three){
+        result=three;
+    }
+    return result;
+}
+let one=0;
+let two=0;
+let three=0; 
+one = parseInt(prompt("첫 번째 숫자를 입력해주세요."));
+two = parseInt(prompt("두 번째 숫자를 입력해주세요."));
+three = parseInt(prompt("세 번째 숫자를 입력해주세요."));
+console.log(one+", "+two+", "+three+"중 가장 큰 수 : "+max(one,two,three));
+
+//문제 8: 완전수 판별 (레벨 5)
+//- 양의 정수를 받아서 완전수인지 판별하는 함수 isPerfect를 만들어보세요.
+//- 완전수: 자신을 제외한 약수들의 합이 자신과 같은 수
+//- 예시: 6의 약수는 1, 2, 3, 6이고, 1+2+3=6이므로 완전수
+function isPerfect(num){
+    let temp=[];
+    let result = 0;
+    for(let i=1;i<num;i++){
+        if(num%i==0){
+            temp.push(i);
+        }
+    }
+    for(var value of temp){
+        result += value;
+    }
+    if(num==result){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+let num6=0; 
+num6 = parseInt(prompt("완전수인지 판별할 숫자를 입력해주세요."));
+console.log(num6+"은(는) 완전수인가요? : "+isPerfect(num6));
+
+    </script>
+</body>
+</html>
