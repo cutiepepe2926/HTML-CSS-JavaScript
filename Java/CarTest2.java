@@ -13,7 +13,7 @@ public class CarTest2 {
     }
 }
 
-class Car {
+class Car {    
     String color;
     String gearType;
     int door;
