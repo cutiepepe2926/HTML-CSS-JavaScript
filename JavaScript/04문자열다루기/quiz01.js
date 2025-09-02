@@ -6,7 +6,7 @@
 
 let test = "다시 합창 합시다";
 function palindrome(text){
-    let text_arr = text.split(" ");
+    let text_arr = text.replaceAll(" ","").split(" ");
     let text_total = "";
     for(let i=0;i<text_arr.length;i++){
         text_total += text_arr[i];
