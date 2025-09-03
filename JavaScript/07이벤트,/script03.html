@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h3>표준이벤트</h3>
+
+    <button type="button" id="btn">표준이벤트~~~!!</button>
+
+    <script>
+        let btn = document.getElementById("btn");
+        //btn.addEventListener("이벤트종류", 실행시킬함수) - on키워드는 제외
+        btn.addEventListener("click", function() {
+            alert("표준이벤트1 동작");
+        });
+        //** 이벤트리스너 방식은 동일한 이벤트에 대해서 여러개 등록이 됩니다.
+        btn.addEventListener("click", function() {
+            alert("표준이벤트2 동작");
+        });
+        // function sayHello() {
+        //     alert("표준이벤트 동작함!");
+        // }
+
+    </script>
+
+
+</body>
+</html>
