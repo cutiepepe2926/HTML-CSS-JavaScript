@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    좌석:
+    <input type="checkbox" name="seat" value="1">1
+    <input type="checkbox" name="seat" value="2">2
+    <input type="checkbox" name="seat" value="3">3
+    <input type="checkbox" name="seat" value="4">4
+    <input type="checkbox" name="seat" value="5">5
+    <input type="checkbox" name="seat" value="6">6
+    <input type="checkbox" name="seat" value="7">7
+    <input type="checkbox" name="seat" value="8">8
+    <input type="checkbox" name="seat" value="9">9
+
+    <button type="button" id="btn">예약하기</button>
+    예약번호: <div class="result"></div>
+
+    <script>
+        //
+        let btn = document.getElementById("btn");
+        let result = document.querySelector(".result");
+        let seat = document.querySelectorAll("input[name=seat]");
+        //seat배열에는 input태그 9개 들어있음
+
+        btn.addEventListener("click", function() {
+            //1. 체크된 좌석을 저장할 수 있는 [] 생성
+            let arr = [];
+            //2. 반복문을 이용해서 체크여부를 확인하고, 체크되어있으면 배열에 추가
+            for(let i = 0; i < seat.length; i++) {
+                //console.log(seat[i].checked);
+                if(seat[i].checked) {
+                    arr.push( seat[i].value );
+                }
+
+            }
+            //3. 반복문을 다 돌고나와서, 체크가 되어있엇다면 result태그에 innerHTML
+            if(arr.length === 0) {
+                alert("좌석을 필수로 체크해야 합니다");
+            } else {
+                result.innerHTML = arr;
+            }
+
+
+        });
+
+
+
+
+    </script>
+
+</body>
+</html>

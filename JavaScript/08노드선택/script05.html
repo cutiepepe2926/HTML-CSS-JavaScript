@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+    <h3>엘리먼트의 css속성 변경하기</h3>
+
+
+    <div>
+
+        <img src="img/1.jpg" alt="대표이미지" width="200" class="profile" style="border: 3px solid #000;">
+
+        <select class="sel">
+            <option value="1.jpg">봄</option>
+            <option value="2.jpg">여름</option>
+            <option value="3.jpg">가을</option>
+            <option value="4.jpg">겨울</option>
+        </select>
+
+        <input type="color" class="color">
+
+        <button type="button" id="profile-btn">이미지 변경하기</button>
+
+    </div>
+
+    <script>
+        let profileBtn = document.getElementById("profile-btn"); //버튼
+        let img = document.querySelector(".profile"); //이미지
+        let sel = document.querySelector(".sel"); //셀렉트 태그
+        let color = document.querySelector(".color"); //컬러 태그
+
+
+        profileBtn.onclick = function() {
+            //태그의 속성명 태그명.속성 으로 접근!!!
+            //console.log(sel.value);
+            //console.log(img.src);
+            img.src = 'img/' + sel.value;
+
+            //css속성을 변경
+            //console.log(color.value);
+
+            //css속성중에 하이픈 은 전부 카멜표기법으로 변경
+            //img.style.borderColor = color.value;
+            img.style.border = "3px solid " + color.value;
+        }
+
+    </script>
+
+
+
+
+</body>
+</html>

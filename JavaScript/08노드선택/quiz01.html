@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="container" style="border: 1;">
+        <h1>자바스크립트 카운트(value속성을 이용해서 카운트처리하세요)</h1>
+        <input type= "number" id="result" value="0">
+        <button id="plus">+</button>
+        <button id="minus">-</button>
+    </div>
+    <script>
+        let plus_btn = document.getElementById("plus");
+        let minus_btn = document.getElementById("minus");
+        let result_area = document.getElementById("result");
+        let num = result_area.value;
+        function plus() {
+            result_area.value++;
+        }
+        function minus() {
+            result_area.value--;
+        }
+        plus_btn.addEventListener("click",plus);
+        minus_btn.addEventListener("click",minus);
+    </script>
+</body>
+</html>

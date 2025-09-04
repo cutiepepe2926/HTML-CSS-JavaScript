@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        input { outline: none; }
+
+    </style>
+
+</head>
+<body>
+    <h3>아이디나 비밀번호가 변경될 때 마다 다음을 구현하라.</h3>
+    <h3>힌트 : 이벤트 input or change</h3>
+    <a>아이디</a>
+    <input type="id" id="id" style="border: 3px solid green;">
+    <br>
+    <a class = "up_a" style="display: none;">아이디는 4글자 이상이거든요?</a>
+    <br>
+    <a>비밀번호</a>
+    <input type="password" id="passwd" style="border: 3px solid red;">
+    <br>
+    <a class = "down_a" style="display: none;">비밀번호는 9글자 이상이거든요?</a>
+
+    <script>
+        const id = document.getElementById("id");
+        const pw = document.getElementById("passwd");
+        const up_a = document.querySelector(".up_a");
+        const down_a = document.querySelector(".down_a");
+        function idCheck() {
+            if(id.value.length<4) {
+                up_a.style.display = "block";
+            }
+            else {
+                up_a.style.display = "none";
+            }
+        }
+        function passwdCheck() {
+            if(pw.value.length<9) {
+                down_a.style.display = "block";
+            }
+            else {
+                down_a.style.display = "none";
+            }
+        }
+        id.addEventListener("input", idCheck);
+        pw.addEventListener("input", passwdCheck);
+
+
+    </script>
+</body>
+</html>
