@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h3>remove - 자기자신삭제</h3>
+
+    <button type="button" id="remove" onclick="this.remove();">자신삭제하기</button>
+
+
+    <h3>removeChild - 자식삭제</h3>
+
+    <button type="button" id="add">추가하기</button>
+    <button type="button" id="delFirst">첫번째자식삭제</button>
+    <button type="button" id="delLast">마지막자식삭제</button>
+    <ul class="box">
+
+    </ul>
+
+    <script>
+        let box = document.querySelector(".box");        
+        let add = document.querySelector("#add");
+        let delFirst = document.querySelector("#delFirst");
+        let delLast = document.querySelector("#delLast");
+        let count = 1;
+
+        //추가하기
+        add.addEventListener("click", function() {
+            let li = document.createElement("li");
+            li.textContent = count++ + "필요한 값을 추가";
+            //이벤트
+            li.addEventListener("dblclick", some );
+                
+            box.appendChild(li);
+        });
+
+        //첫번째자식삭제
+        delFirst.addEventListener("click", function() {
+            //부모.removeChild(지울자식노드)
+
+            //console.log(box.children)
+            //console.log(box.children[0]);
+            if(box.children[0] === undefined) {
+                return;
+            }
+
+            //box.removeChild( box.children[0] );
+            box.removeChild( box.firstElementChild );
+        });
+
+        //마지막자식삭제
+        delLast.addEventListener("click", function() {
+            //let len = box.children.length;
+            //box.removeChild( box.children[len - 1] );
+            box.removeChild( box.lastElementChild );
+        })
+
+        //더블클릭
+        function some() {
+            this.remove();
+        }
+
+    </script>
+
+
+
+
+</body>
+</html>
