@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h3>최신 관심 목록</h3>
+    <div class="cartList">
+
+    </div>
+
+    <script>
+        
+
+        //로컬스토리지를 가져온다(이 값은 브라우저를 껏다키더라도 유지된다)
+        var arr = JSON.parse( localStorage.getItem("like"));
+        //빈값이 아니라면
+        if(arr != null) {
+            for(var i = 0 ; i < arr.length; i++) {
+                var img = document.createElement("img");    
+                img.src = arr[i];
+                img.style.width = "300px";
+                document.querySelector(".cartList").appendChild(img);
+            }   
+        } else {
+            var div = document.createElement("div");
+            div.innerHTML = "최신 정보가 없습니다";
+            document.querySelector(".cartList").appendChild(div);
+        }
+
+
+
+    </script>
+
+</body>
+</html>

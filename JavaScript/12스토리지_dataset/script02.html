@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id="memo">
+    <button type="button" id="add">세션스토리지 추가</button>
+
+    <ul class="box">
+
+    </ul>
+
+
+    <script>
+        let memo = document.getElementById("memo");
+        let add = document.getElementById("add");
+        let box = document.querySelector(".box");
+        let arr = [];
+
+        add.addEventListener("click", function() {
+            
+
+            //있는지 없는지 검사 - 있으면 통째로 가져와서 배열 바꿔치기
+            if( localStorage.getItem("memo") !== null) {
+                let str = localStorage.getItem("memo");
+                arr = JSON.parse(str); //string -> obj
+            }
+
+            arr.push(memo.value);
+            localStorage.setItem("memo", JSON.stringify(arr) );
+            memo.value = "";
+
+            getStorage(); //화면 다시 구성
+
+
+            //로컬스토리지 저장 - 동일한 키라면 수정됩니다.
+            // localStorage.setItem("memo", memo.value);
+            // memo.value = "";
+            //값얻기
+            // let text = localStorage.getItem("memo"); //키
+            // console.log(text);
+            // //값삭제
+            // localStorage.removeItem("memo"); //삭제
+            // localStorage.clear(); //전부삭제
+        })
+
+        //가져오기
+        function getStorage() {
+            if(localStorage.getItem("memo") !== null) {
+                let arr = JSON.parse(localStorage.getItem("memo"));
+                
+                let str = "";
+                arr.forEach( function(item, index) {
+                    str += "<li onclick='removeStorage(" + index + ");'>" + item + "</li>";
+                });
+
+                box.innerHTML = str;
+            }
+        }
+
+        //삭제기능
+        function removeStorage(index) {
+            //arr에서 값을 찾아서 지움 <-- 인덱스
+            arr.splice(index, 1); //중간에서 삭제
+            localStorage.setItem("memo", JSON.stringify(arr) ); //로컬스토리지 갱신
+            getStorage(); //다시화면그림
+        }
+
+
+
+        (function() {
+            getStorage();
+        })();
+
+
+    </script>
+
+
+
+</body>
+</html>

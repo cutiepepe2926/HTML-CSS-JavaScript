@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="box" data-id="aaa123" data-age="20" data-addr="서울시" >유저의정보를 저장</div>
+    <div class="item" data-user='{"name": "홍길동", "age" : 20}'>유저의정보를객체로 저장</div>
+
+
+
+    <script>
+        let box = document.querySelector(".box");
+
+        //console.dir(box);
+        //let id = box.dataset.id;
+        //let age = box.dataset.age;
+        //let addr = box.dataset.addr;
+
+        //수정, 추가
+        box.dataset.id = "bbb123"; //수정
+        box.dataset.email = "aaa@naver.com"; //추가
+        console.log(box.dataset);
+
+        let item = document.querySelector(".item");
+        console.log( JSON.parse(item.dataset.user)  );
+
+
+    </script>
+
+
+
+</body>
+</html>
