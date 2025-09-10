@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>지도 페이지</title>
+
+  <!-- tailwindcss import -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Leaflet 지도 API -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <style>
+    #map {
+      width: 100%;
+      height: 100vh;
+    }
+
+    /* 아이콘 기본 효과(회색→호버 시 컬러) */
+    .side-icon {
+      filter: grayscale(100%);
+      transition: .2s ease;
+    }
+    .side-btn:hover .side-icon,
+    .side-btn[aria-current="page"] .side-icon {
+      filter: grayscale(0%);
+    }
+  </style>
+</head>
+<body class="flex">
+
+  <!-- 좌측 네비(로컬 이미지 아이콘 사용) -->
+  <aside class="w-16 bg-white border-r flex flex-col items-center py-4 space-y-3 shadow">
+    <!-- 활성 상태는 aria-current="page" 로 표시 -->
+    <button class="side-btn w-10 h-10 grid place-items-center rounded-lg hover:bg-gray-100" aria-current="page" data-tab="map" title="지도">
+      <img src="./assets/icons/map_icon.png" alt="지도" class="side-icon w-6 h-6"/>
+    </button>
+    <button class="side-btn w-10 h-10 grid place-items-center rounded-lg hover:bg-gray-100" data-tab="user" title="사용자">
+      <img src="./assets/icons/mypage_icon.png" alt="사용자" class="side-icon w-6 h-6"/>
+    </button>
+    <button class="side-btn w-10 h-10 grid place-items-center rounded-lg hover:bg-gray-100" data-tab="search" title="검색">
+      <img src="./assets/icons/search_icon.png" alt="검색" class="side-icon w-6 h-6"/>
+    </button>
+    <button class="side-btn w-10 h-10 grid place-items-center rounded-lg hover:bg-gray-100" data-tab="crown" title="왕관">
+      <img src="./assets/icons/recommend_icon.png" alt="추천" class="side-icon w-6 h-6"/>
+    </button>
+  </aside>
+
+  <!-- 지도 영역 -->
+  <main class="flex-1 relative">
+    <div id="map"></div>
+<!-- 지도 우측 하단 버튼 그룹 -->
+<div class="absolute bottom-4 right-4 z-[1000] flex items-center space-x-2 bg-none p-2 rounded-lg shadow">
+  <!-- 한식 -->
+  <button class="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded hover:bg-gray-200">
+    <img src="./assets/map_icons/koreanfood_icon.png" alt="한식" class="w-4 h-4"/>
+    한식
+  </button>
+  <!-- 중식 -->
+  <button class="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded hover:bg-gray-200">
+    <img src="./assets/map_icons/chinesefood_icon.png" alt="중식" class="w-4 h-4"/>
+    중식
+  </button>
+  <!-- 일식 -->
+  <button class="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded hover:bg-gray-200">
+    <img src="./assets/map_icons/japanesefood_icon.png" alt="일식" class="w-4 h-4"/>
+    일식
+  </button>
+  <!-- 양식 -->
+  <button class="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded hover:bg-gray-200">
+    <img src="./assets/map_icons/westernfood_icon.png" alt="양식" class="w-4 h-4"/>
+    양식
+  </button>
+  <!-- 분식 -->
+  <button class="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded hover:bg-gray-200">
+    <img src="./assets/map_icons/koreanfood_icon.png" alt="분식" class="w-4 h-4"/>
+    분식
+  </button>
+
+  <!-- 확대/축소 -->
+  <div class="flex flex-col ml-2">
+    <button id="zoomIn" class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded hover:bg-gray-200 mb-1">+</button>
+    <button id="zoomOut" class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded hover:bg-gray-200">-</button>
+  </div>
+</div>
+
+  </div>
+  </div>
+  </main>
+  <!-- 지도 우측 하단 버튼들 -->
+
+
+  <script>
+    // 지도 생성
+    const map = L.map('map').setView([37.4979, 127.0276], 15);
+
+    // OSM 타일 레이어 추가
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // 확대/축소 버튼 이벤트
+    document.getElementById("zoomIn").addEventListener("click", () => map.zoomIn());
+    document.getElementById("zoomOut").addEventListener("click", () => map.zoomOut());
+  </script>
+
+</body>
+</html>
