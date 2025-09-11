@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>지도 페이지</title>
 
   <!-- tailwindcss import -->
@@ -28,133 +29,179 @@
       filter: grayscale(0%);
     }
   </style>
+
 </head>
 <body class="flex">
 
   <!-- 좌측 네비(로컬 이미지 아이콘 사용) -->
-<aside class="w-36 bg-[#F8C74D] border-r flex flex-col justify-between py-4 shadow z-[3000]">
+  <aside class="w-36 bg-[#F8C74D] border-r flex flex-col justify-between py-4 shadow z-[3000]">
+  
     <!-- 활성 상태는 aria-current="page" 로 표시-->
     <!-- 상단 그룹 -->
-  <div class="flex flex-col items-center space-y-12">
-    <button class="side-btn w-18 h-18 grid place-items-center rounded-lg hover:bg-gray-100" aria-current="page" data-tab="map" title="지도">
-      <img src="./assets/icons/Home.png" alt="지도" class="side-icon w-12 h-12"/>
-    </button>
-    <button class="side-btn w-18 h-18 grid place-items-center rounded-lg hover:bg-gray-100" data-tab="search" title="검색">
-      <img src="./assets/icons/Search.png" alt="검색" class="side-icon w-12 h-12"/>
-    </button>
-    <button class="side-btn w-18 h-18 grid place-items-center rounded-lg hover:bg-gray-100" data-tab="user" title="사용자">
-      <img src="./assets/icons/Compass.png" alt="사용자" class="side-icon w-12 h-12"/>
-    </button>
-    <button class="side-btn w-18 h-18 grid place-items-center rounded-lg hover:bg-gray-100" data-tab="crown" title="왕관">
-      <img src="./assets/icons/Award.png" alt="추천" class="side-icon w-12 h-12"/>
-    </button>
-  </div>
+    <div class="flex flex-col items-center space-y-6 w-full">
 
-  <!-- 하단 그룹 -->
-  <div class="flex flex-col items-center space-y-8">
-    <button class="side-btn w-18 h-18 grid place-items-center rounded-lg hover:bg-gray-100" data-tab="setting" title="설정">
-      <img src="./assets/icons/User.png" alt="설정" class="side-icon w-12 h-12"/>
-    </button>
-    <button class="side-btn w-18 h-18 grid place-items-center rounded-lg hover:bg-gray-100" data-tab="logout" title="로그아웃">
-      <img src="./assets/icons/Logout.png" alt="로그아웃" class="side-icon w-12 h-12"/>
-    </button>
-  </div>
+      <!-- 홈 화면(메인 지도) -->
+      <button class="side-btn w-36 h-24 flex items-center justify-center rounded-lg hover:bg-[#ab8a35]" aria-current="page" data-tab="map" title="지도">
+        <img src="./assets/icons/Home.png" alt="지도" class="side-icon w-12 h-12"/>
+      </button>
+      
+      <!-- 추천 피드 & 검색 -->
+      <button class="side-btn w-36 h-24 flex items-center justify-center rounded-lg hover:bg-[#ab8a35]" data-tab="search" title="검색">
+        <img src="./assets/icons/Search.png" alt="검색" class="side-icon w-12 h-12"/>
+      </button>
+    
+      <!-- 팔로우 피드 -->
+      <button class="side-btn w-36 h-24 flex items-center justify-center rounded-lg hover:bg-[#ab8a35]" data-tab="user" title="사용자">
+        <img src="./assets/icons/Compass.png" alt="사용자" class="side-icon w-12 h-12"/>
+      </button>
+    
+      <!-- 가게 순위 -->
+      <button class="side-btn w-36 h-24 flex items-center justify-center rounded-lg hover:bg-[#ab8a35]" data-tab="crown" title="왕관">
+        <img src="./assets/icons/Award.png" alt="추천" class="side-icon w-12 h-12"/>
+      </button>
+    </div>
+
+    <!-- 하단 그룹 -->
+    <div class="flex flex-col items-center space-y-6 w-full">
+      
+      <!-- 마이페이지 -->
+      <button class="side-btn w-36 h-24 flex items-center justify-center hover:bg-[#ab8a35]" data-tab="setting" title="설정">
+        <img src="./assets/icons/User.png" alt="설정" class="side-icon w-12 h-12"/>
+      </button>
+    
+      <!-- 로그인/로그아웃 -->
+      <button class="side-btn w-36 h-24 flex items-center justify-center hover:bg-[#ab8a35]" data-tab="logout" title="로그아웃">
+        <img src="./assets/icons/Logout.png" alt="로그아웃" class="side-icon w-12 h-12"/>
+      </button>
+    </div>
   </aside>
 
 
   <!-- 지도 영역 -->
   <main class="flex-1 relative">
+    
     <div id="map"></div>
 
-    <!-- 중앙 고정 핀 아이콘 -->
-  <img src="./assets/icons/colored_empty_pin.png" 
-       alt="고정핀" 
-       class="absolute bottom-1/4 right-1/3 w-12 h-12 -translate-x-1/7 -translate-y-1/3 z-[1000] pointer-events-none"/>
+    <!-- 임시 고정 핀 아이콘 -->
+    <img src="./assets/icons/colored_empty_pin.png" 
+      alt="고정핀" 
+      class="absolute bottom-1/4 right-1/3 w-12 h-12 -translate-x-1/7 -translate-y-1/3 z-[1000] pointer-events-none"/>
 
-  <img src="./assets/icons/empty_pin.png" 
-       alt="고정핀" 
-       class="absolute top-1/3 left-1/3 w-8 h-8 -translate-x-1/4 -translate-y-1/3 z-[1000] pointer-events-none"/>
-
-  <img src="./assets/icons/colored_filled_pin.png" 
-       alt="고정핀" 
-       class="absolute top-1/2 left-1/2 w-16 h-16 -translate-x-1/2 -translate-y-1/2 z-[1000] cursor-pointer"/>
+    <!-- 임시 고정 핀 아이콘 -->
+    <img src="./assets/icons/empty_pin.png" 
+      alt="고정핀" 
+      class="absolute top-1/3 left-1/3 w-8 h-8 -translate-x-1/4 -translate-y-1/3 z-[1000] pointer-events-none"/>
+    
+      <!-- 임시 고정 핀 아이콘 -->
+    <img src="./assets/icons/colored_filled_pin.png" 
+      alt="고정핀" 
+      class="absolute top-1/2 left-1/2 w-16 h-16 -translate-x-1/2 -translate-y-1/2 z-[1000] cursor-pointer"/>
        
-<!-- 지도 우측 하단 버튼 그룹 -->
-<div class="absolute bottom-4 right-4 z-[1000] flex items-center space-x-2 bg-none p-2 rounded-lg text-lg">
-  <!-- 한식 -->
-  <button class="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded hover:bg-gray-200">
-    <img src="./assets/map_icons/koreanfood_icon.png" alt="한식" class="w-12 h-12"/>
-    한식
-  </button>
-  <!-- 중식 -->
-  <button class="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded hover:bg-gray-200">
-    <img src="./assets/map_icons/chinesefood_icon.png" alt="중식" class="w-12 h-12"/>
-    중식
-  </button>
-  <!-- 일식 -->
-  <button class="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded hover:bg-gray-200">
-    <img src="./assets/map_icons/japanesefood_icon.png" alt="일식" class="w-12 h-12"/>
-    일식
-  </button>
-  <!-- 양식 -->
-  <button class="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded hover:bg-gray-200">
-    <img src="./assets/map_icons/westernfood_icon.png" alt="양식" class="w-12 h-12"/>
-    양식
-  </button>
-  <!-- 분식 -->
-  <button class="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded hover:bg-gray-200">
-    <img src="./assets/map_icons/schoolfood_icon.png" alt="분식" class="w-12 h-12"/>
-    분식
-  </button>
+    <!-- 지도 우측 하단 버튼 그룹 -->
+    <div class="absolute bottom-4 right-4 z-[1000] flex items-center space-x-2 bg-none p-2 rounded-lg text-lg">
+    
+      <!-- 한식 -->
+      <button class="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded hover:bg-[#F8C74D]">
+        <div class="w-12 h-12 flex items-center justify-center">
+          <img src="./assets/map_icons/koreanfood_icon.png" alt="한식" class="max-w-full max-h-full object-contain"/>
+        </div>
+        <p>한식</p>
+      </button>
 
-  <!-- 확대/축소 -->
-  <div class="flex flex-col ml-2">
-    <button id="zoomIn" class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded hover:bg-gray-200 mb-1">+</button>
-    <button id="zoomOut" class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded hover:bg-gray-200 mb-1">-</button>
-    <!-- 현재 위치 -->
-    <button id="currentLocationBtn" class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded hover:bg-gray-200">
-    <img src="./assets/icons/current_location.png" alt="현재 위치" class="w-5 h-5"/>
-  </button>
-  </div>
-</div>
+      <!-- 중식 -->
+      <button class="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded hover:bg-[#F8C74D]">
+        <div class="w-12 h-12 flex items-center justify-center">
+          <img src="./assets/map_icons/chinesefood_icon.png" alt="중식" class="max-w-full max-h-full object-contain"/>
+        </div>
+        <p>중식</p>
+      </button>
 
-  </div>
-  </div>
-<!-- 좌측 슬라이드 패널 -->
-<aside id="shopPanel" 
-class="fixed top-0 left-36 w-[33vw] h-full bg-white shadow-lg -translate-x-full transition-transform duration-300 z-[2000] overflow-y-auto">
-  <div class="p-4 flex justify-between items-center border-b">
-    <h2 class="text-lg font-bold">가게 정보</h2>
-    <button id="panelClose" class="text-xl w-8 h-8 rounded hover:bg-gray-100">×</button>
-  </div>
+      <!-- 일식 -->
+      <button class="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded hover:bg-[#F8C74D]">
+        <div class="w-12 h-12 flex items-center justify-center">
+          <img src="./assets/map_icons/japanesefood_icon.png" alt="일식" class="max-w-full max-h-full object-contain"/>
+        </div>
+        <p>일식</p>
+      </button>
 
-  <!-- JS에서 동적으로 내용을 채울 영역 -->
-  <div id="shopContent" class="p-4"></div>
-</aside>
+      <!-- 양식 -->
+      <button class="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded hover:bg-[#F8C74D]">
+        <div class="w-12 h-12 flex items-center justify-center">
+          <img src="./assets/map_icons/westernfood_icon.png" alt="양식" class="max-w-full max-h-full object-contain"/>
+        </div>
+        <p>양식</p>
+      </button>
+
+      <!-- 분식 -->
+      <button class="flex items-center gap-1 px-3 py-1 bg-gray-100 rounded hover:bg-[#F8C74D]">
+        <div class="w-12 h-12 flex items-center justify-center">
+          <img src="./assets/map_icons/schoolfood_icon.png" alt="분식" class="max-w-full max-h-full object-contain"/>
+        </div>
+        <p>분식</p>
+      </button>
 
 
+      <!-- 확대/축소 -->
+      <div class="flex flex-col ml-2">
+        
+        <!-- 줌인 버튼 -->
+        <button id="zoomIn" class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded hover:bg-[#F8C74D] mb-1">+</button>
+        
+        <!-- 줌 아웃 버튼 -->
+        <button id="zoomOut" class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded hover:bg-[#F8C74D] mb-1">-</button>
+    
+        <!-- 현재 위치 -->
+        <button id="currentLocationBtn" class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded hover:bg-[#F8C74D]">
+          <img src="./assets/icons/current_location.png" alt="현재 위치" class="w-5 h-5"/>
+        </button>
+      </div>
+    </div>
+
+
+  
+    <!-- 좌측 슬라이드 패널 -->
+    <aside id="shopPanel" 
+    class="fixed top-0 left-36 w-[33vw] h-full bg-white shadow-lg -translate-x-full transition-transform duration-300 z-[2000] overflow-y-auto">
+
+      <!-- 검색칸으로 변경해야 함 -->
+      <div class="p-4 flex justify-between items-center border-b bg-[#FBA62C]">
+        <h2 class="text-lg font-bold">강남구 역삼1동</h2>
+        
+        <!-- 추후에 검색 칸 추가 -->
+
+        <!-- 슬라이드 닫기 버튼 -->
+        <button id="panelClose" class="text-xl w-8 h-8 rounded hover:bg-[#845717]">×</button>
+      </div>
+  
+      <!-- JS에서 동적으로 내용을 채울 영역 -->
+      <div id="shopContent" class="p-4"></div>
+    </aside>
 
   </main>
-<!-- Lightbox Modal -->
-<div id="lightbox" class="fixed inset-0 z-[5000] hidden">
-  <!-- 반투명 백드롭 -->
-  <div id="lbBackdrop" class="absolute inset-0 bg-black/70"></div>
 
-  <!-- 콘텐츠 래퍼 -->
-  <div class="relative w-full h-full grid place-items-center p-4">
-    <!-- 닫기 버튼 -->
-    <button id="lbClose" class="absolute top-4 right-4 w-10 h-10 text-2xl
-      bg-white/90 hover:bg-white rounded-full grid place-items-center shadow">
-      ×
-    </button>
+  <!-- 리뷰 이미지 클릭 시 원본 크기로 사진 볼 수 있는 Lightbox Modal -->
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="fixed inset-0 z-[5000] hidden">
+  
+    <!-- 반투명 백드롭 -->
+    <div id="lbBackdrop" class="absolute inset-0 bg-black/70"></div>
 
-    <!-- 원본 이미지 -->
-    <img id="lbImage" alt="원본 이미지"
-    class="w-[90vw] max-h-[85vh] h-auto object-contain rounded shadow-lg border bg-white"/>
-    <!-- (선택) 캡션 -->
-    <div id="lbCaption" class="mt-2 text-white/90 text-sm"></div>
+    <!-- 콘텐츠 래퍼 -->
+    <div class="relative w-full h-full grid place-items-center p-4">
+    
+      <!-- 닫기 버튼 -->
+      <button id="lbClose" class="absolute top-4 right-4 w-10 h-10 text-2xl
+      bg-white/90 hover:bg-white rounded-full grid place-items-center shadow">×
+      </button>
+
+      <!-- 원본 이미지 -->
+      <img id="lbImage" alt="원본 이미지"
+      class="w-[90vw] max-h-[85vh] h-auto object-contain rounded shadow-lg border bg-white"/>
+    
+      <!-- 캡션 -->
+      <div id="lbCaption" class="mt-2 text-white/90 text-sm"></div>
+    </div>
   </div>
-</div>
   
 
   <script>
@@ -170,77 +217,97 @@ class="fixed top-0 left-36 w-[33vw] h-full bg-white shadow-lg -translate-x-full 
     document.getElementById("zoomIn").addEventListener("click", () => map.zoomIn());
     document.getElementById("zoomOut").addEventListener("click", () => map.zoomOut());
 
+    // 현재 위치 버튼 클릭 이벤트
+    document.getElementById("currentLocationBtn").addEventListener("click", () => {
+      map.locate({ setView: true, maxZoom: 16 }); 
+    });
+
+    // 위치 찾기 성공 시
+    map.on("locationfound", (e) => {
+      // 지도 이동
+      map.setView(e.latlng, 16);
+
+      // 현재 위치 마커 표시 (선택 사항)
+      L.marker(e.latlng).addTo(map)
+        .bindPopup("현재 위치")
+        .openPopup();
+    });
+
+    // 위치 찾기 실패 시
+    map.on("locationerror", (e) => {
+      alert("현재 위치를 가져올 수 없습니다.");
+    });
+
     // 안전 바인딩: id가 없거나 pointerEvents가 막혀 있어도 케어
-  const pin = document.getElementById('coloredPin') 
-           || document.querySelector('img[src$="colored_filled_pin.png"]');
-  const panel = document.getElementById('shopPanel');
-  const btnClose = document.getElementById('panelClose');
-  const shopContent = document.getElementById('shopContent');
+    const pin = document.getElementById('coloredPin') || document.querySelector('img[src$="colored_filled_pin.png"]');
+    const panel = document.getElementById('shopPanel');
+    const btnClose = document.getElementById('panelClose');
+    const shopContent = document.getElementById('shopContent');
 
-  if (pin) {
-    // 혹시 모를 잔여 스타일 방지
-    pin.style.pointerEvents = 'auto';
+    if (pin) {
+      // 혹시 모를 잔여 스타일 방지
+      pin.style.pointerEvents = 'auto';
 
-    pin.addEventListener('click', () => {
-      // 필요시 여기서 실제 가게 데이터 바인딩
-      //shopContent.textContent = '프엔카페 - 서울 강남구 / 영업시간 10:00 ~ 21:00';
-      shopContent.innerHTML = `
-  <!-- 대표 이미지 -->
-  <div class="w-full h-96 rounded-lg bg-gray-200 bg-center bg-center bg-contain bg-no-repeat" 
-     style="background-image: url('./assets/info_assets/main_pic.png');">
-  </div>
+      pin.addEventListener('click', () => {
+        // 필요시 여기서 실제 가게 데이터 바인딩
+        //shopContent.textContent = '프엔카페 - 서울 강남구 / 영업시간 10:00 ~ 21:00';
+        shopContent.innerHTML = `
+        <!-- 대표 이미지 -->
+        <div class="w-full h-96 rounded-lg bg-gray-200 bg-center bg-center bg-contain bg-no-repeat" 
+        style="background-image: url('./assets/info_assets/main_pic.png');">
+        </div>
 
-  <!-- 가게명 / 카테고리 + 별점 -->
-  <div class="flex justify-between items-center mt-4">
-    <div>
-      <h3 class="text-xl font-semibold">오오기리</h3>
-      <p class="text-gray-500 text-sm">일식</p>
-    </div>
-    <div class="flex items-center space-x-1 text-yellow-500">★★★★★</div>
-  </div>
+        <!-- 가게명 / 카테고리 + 별점 -->
+        <div class="flex justify-between items-center mt-4">
+          <div>
+            <h3 class="text-xl font-semibold">오오기리</h3>
+            <p class="text-gray-500 text-sm">일식</p>
+          </div>
+          <div class="flex items-center space-x-1 text-yellow-500">★★★★★</div>
+        </div>
 
-  <!-- 연락처 / 영업시간 -->
-  <p class="flex items-center gap-2">
-    <img src="./assets/info_assets/tel_icon.png" alt="전화" class="w-5 h-5"/>
-    02-1234-5678
-  </p>
+        <!-- 연락처 / 영업시간 -->
+        <p class="flex items-center gap-2">
+        <img src="./assets/info_assets/tel_icon.png" alt="전화" class="w-5 h-5"/>
+        02-1234-5678
+        </p>
 
-  <!-- 좋아요 / 리뷰 안내 -->
-  <div class="text-sm text-gray-600 space-y-1 border-t pt-2 mt-2">
-    <p>♥ 내 팔로워 2명이 좋아요를 눌렀습니다.</p>
-    <p>● xxx님이 리뷰를 작성한 식당입니다.</p>
-  </div>
+        <!-- 좋아요 / 리뷰 안내 -->
+        <div class="text-sm text-gray-600 space-y-1 border-t pt-2 mt-2">
+          <p>♥ 내 팔로워 2명이 좋아요를 눌렀습니다.</p>
+          <p>● xxx님이 리뷰를 작성한 식당입니다.</p>
+        </div>
 
-  <!-- 리뷰 섹션 -->
-  <div class="border-t pt-4 mt-2">
-    <div class="flex items-center justify-between mb-2">
-      <h4 class="font-semibold">리뷰 112</h4>
-      <button class="text-blue-500 text-sm">더보기</button>
-  </div>
-  <div class="grid grid-cols-3 gap-2">
-    <div class="h-40 rounded overflow-hidden"><img src="./assets/info_assets/review01.png" alt="리뷰1" class="w-full h-full object-cover"></div>
-    <div class="h-40 rounded overflow-hidden"><img src="./assets/info_assets/review02.png" alt="리뷰2" class="w-full h-full object-cover"></div>
-    <div class="h-40 rounded overflow-hidden"><img src="./assets/info_assets/review03.png" alt="리뷰3" class="w-full h-full object-cover"></div>
-    <div class="h-40 rounded overflow-hidden"><img src="./assets/info_assets/review04.png" alt="리뷰4" class="w-full h-full object-cover"></div>
-    <div class="h-40 rounded overflow-hidden"><img src="./assets/info_assets/review05.png" alt="리뷰5" class="w-full h-full object-cover"></div>
-    
-</div>
-
-  </div>
-`;
-
-      panel.classList.remove('-translate-x-full');
-      panel.classList.add('translate-x-0');
-      // 디버그용(필요시 켜기): console.log('[PIN] clicked');
+        <!-- 리뷰 섹션 -->
+        <div class="border-t pt-4 mt-2">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-semibold">리뷰 112</h4>
+            <button class="text-blue-500 text-sm">더보기</button>
+          </div>
+          
+          <div class="grid grid-cols-3 gap-2">
+            <div class="h-40 rounded overflow-hidden"><img src="./assets/info_assets/review01.png" alt="리뷰1" class="w-full h-full object-cover"></div>
+            <div class="h-40 rounded overflow-hidden"><img src="./assets/info_assets/review02.png" alt="리뷰2" class="w-full h-full object-cover"></div>
+            <div class="h-40 rounded overflow-hidden"><img src="./assets/info_assets/review03.png" alt="리뷰3" class="w-full h-full object-cover"></div>
+            <div class="h-40 rounded overflow-hidden"><img src="./assets/info_assets/review04.png" alt="리뷰4" class="w-full h-full object-cover"></div>
+            <div class="h-40 rounded overflow-hidden"><img src="./assets/info_assets/review05.png" alt="리뷰5" class="w-full h-full object-cover"></div>
+          </div>
+        </div>
+        `;
+        
+        panel.classList.remove('-translate-x-full');
+        panel.classList.add('translate-x-0');
+        // 디버그용(필요시 켜기): console.log('[PIN] clicked');
     });
   }
 
+  // 버튼으로 좌측 슬라이드 닫기  
   btnClose?.addEventListener('click', () => {
     panel.classList.remove('translate-x-0');
     panel.classList.add('-translate-x-full');
   });
 
-  // ESC로 닫기 (선택)
+  // ESC로 좌측 슬라이드 닫기
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       panel.classList.remove('translate-x-0');
@@ -249,45 +316,45 @@ class="fixed top-0 left-36 w-[33vw] h-full bg-white shadow-lg -translate-x-full 
   });
 
   // ===== Lightbox =====
-const lightbox   = document.getElementById('lightbox');
-const lbImg      = document.getElementById('lbImage');
-const lbCaption  = document.getElementById('lbCaption');
-const lbClose    = document.getElementById('lbClose');
-const lbBackdrop = document.getElementById('lbBackdrop');
+  const lightbox   = document.getElementById('lightbox');
+  const lbImg      = document.getElementById('lbImage');
+  const lbCaption  = document.getElementById('lbCaption');
+  const lbClose    = document.getElementById('lbClose');
+  const lbBackdrop = document.getElementById('lbBackdrop');
 
-function openLightbox(src, caption='') {
-  lbImg.src = src;
-  lbCaption.textContent = caption;
-  lightbox.classList.remove('hidden');
-  document.body.style.overflow = 'hidden'; // 스크롤 잠금
-}
+  function openLightbox(src, caption='') {
+    lbImg.src = src;
+    lbCaption.textContent = caption;
+    lightbox.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // 스크롤 잠금
+  }
 
-function closeLightbox() {
-  lightbox.classList.add('hidden');
-  lbImg.src = '';
-  lbCaption.textContent = '';
-  document.body.style.overflow = ''; // 스크롤 복구
-}
+  function closeLightbox() {
+    lightbox.classList.add('hidden');
+    lbImg.src = '';
+    lbCaption.textContent = '';
+    document.body.style.overflow = ''; // 스크롤 복구
+  }
 
-// 닫기 동작
-lbClose.addEventListener('click', closeLightbox);
-lbBackdrop.addEventListener('click', closeLightbox);
-window.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeLightbox();
-});
+  // 닫기 동작
+  lbClose.addEventListener('click', closeLightbox);
+  lbBackdrop.addEventListener('click', closeLightbox);
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
 
-// === 이벤트 위임: shopPanel 내 썸네일 클릭 시 원본 열기 ===
-const panelEl = document.getElementById('shopPanel');
-panelEl.addEventListener('click', (e) => {
-  const img = e.target.closest('#shopContent img');
-  if (!img) return;
+  // === 이벤트 위임: shopPanel 내 썸네일 클릭 시 원본 열기 ===
+  const panelEl = document.getElementById('shopPanel');
+  panelEl.addEventListener('click', (e) => {
+    const img = e.target.closest('#shopContent img');
+    if (!img) return;
 
-  // data-full 이 있으면 원본 경로로, 없으면 썸네일 경로 사용
-  const fullSrc = img.getAttribute('data-full') || img.src;
+    // data-full 이 있으면 원본 경로로, 없으면 썸네일 경로 사용
+    const fullSrc = img.getAttribute('data-full') || img.src;
 
-  // (선택) 캡션은 alt 사용
-  openLightbox(fullSrc, img.alt || '');
-});
+    // 캡션은 alt 사용
+    openLightbox(fullSrc, img.alt || '');
+  });
 
   </script>
 
