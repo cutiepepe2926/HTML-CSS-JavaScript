@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        // fetch( "hello.txt" )
+        // .then( function(result) {
+        //     result.text().then( function(data) {
+        //         console.log(data);
+        //     })
+        // })
+
+        /*
+        fetch를 호출시 프로미스객체를 받음
+        - fullfilled: 실행성공
+        - pending: 대기중
+        - rejected: 실패
+        */
+              
+        //비동기적으로 동작함
+        // console.log(1);
+        // let promise = fetch("hello.txt"); //프로미스객체 반환
+        // promise.then( function(data) {
+        //     // console.log(data); //response객체 
+        //     // if(data.status === 200) {
+        //     //     console.log("성공에 대한 처리....");  
+        //     // } 
+        //     data.text().then( function(data) {
+        //         console.log(data);
+        //     })
+        // })
+        // console.log(3);
+
+
+        //then() - 함수의 체이닝 -> then함수 안에서 return을 적으면, 다시 promise를 반환함
+        fetch("hello.txt")
+        .then( function(response) {
+            return response.text();
+        })
+        .then( function(data) {
+            console.log(data);
+        });
+
+
+        fetch("hello.txt")
+        .then( response => response.text() )
+        .then( data => console.log(data) )
+        .catch( e => console.log(e) ); //catch 옵션
+     
+
+
+    </script>
+
+</body>
+</html>

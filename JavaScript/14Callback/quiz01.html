@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        //https://raw.githubusercontent.com/yopy0817/data_example/refs/heads/master/by.json
+        //요기로 fetch요청을 보내서 유의미한 데이터를 반복문으로출력..
+
+        fetch("https://raw.githubusercontent.com/yopy0817/data_example/refs/heads/master/by.json")
+        .then(response => response.json())
+        .then(response => {
+            response.forEach((item)=> {
+                console.log(item.value);
+            })
+        })
+
+        /*
+        fetch("https://raw.githubusercontent.com/yopy0817/data_example/refs/heads/master/by.json")
+        .then( response => response.text())
+        .then(data => {
+            let result = new DOMParser().parseFromString(data,"text/xml");
+            let list = result.querySelectorAll("data");
+
+            list.forEach((item)=> {
+                console.log(item.children[0]);
+                console.log(item.children[1]);
+                console.log(item.children[2]);
+
+            })
+        })
+        */
+    </script>
+
+</body>
+</html>
