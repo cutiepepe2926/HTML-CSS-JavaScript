@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>강남구 JSON (3단계 fallback)</title>
+  <style>
+    #map { width: 100%; height: 100vh; }
+    #loadMore {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+  </style>
+  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0698fb5cbfd3626afb61d071e360de06&libraries=services"></script>
+</head>
+<body>
+  <button id="loadMore">더보기 (20개씩)</button>
+  <div id="map"></div>
+
+  <script>
+    const map = new kakao.maps.Map(document.getElementById('map'), {
+      center: new kakao.maps.LatLng(37.4979, 127.0276),
+      level: 6
+    });
+
+
+    const geocoder = new kakao.maps.services.Geocoder();
+
+    // 주소 정제 함수들
+    function cleanNewAddress(addr) {
+      if (!addr) return '';
+      return addr.replace(/^\d*\s*서울/, '서울').trim();
+    }
+    function cleanOldAddress(addr) {
+      if (!addr) return '';
+      return addr.replace(/(\d+-?\d*)\s+\1/, '$1').trim();
+    }
+    function extractDistrict(addr) {
+      if (!addr) return '';
+      const match = addr.match(/서울\s+\S+구/);
+      return match ? match[0] : '';
+    }
+
+    // 실제 검색 함수
+function searchAndMark(addr, title, type, fallback = null) {
+  if (!addr) {
+    console.warn(`[${title}] ${type}: 주소 없음`);
+    if (fallback) fallback();
+    return;
+  }
+  console.log(`[${title}] ${type} 시도 →`, addr);
+
+  geocoder.addressSearch(addr, (result, status) => {
+    if (status === kakao.maps.services.Status.OK && result[0]) {
+      console.log(`[${title}] ${type} 성공 ✅`, result[0]);
+      const pos = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+      // ✅ 커스텀 마커 이미지
+      const imageSrc = './assets/pin_icons/pin5.png';
+      const imageSize = new kakao.maps.Size(32, 32);
+      const imageOption = { offset: new kakao.maps.Point(16, 32) };
+      const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+
+      const marker = new kakao.maps.Marker({
+        map: map,
+        position: pos,
+        title: title,
+        image: markerImage   // 여기서 커스텀 마커 적용
+      });
+
+      const iwContent = `<div style="padding:5px;font-size:13px;">${title}<br>${addr}</div>`;
+      const infowindow = new kakao.maps.InfoWindow({ content: iwContent });
+      kakao.maps.event.addListener(marker, 'click', () => infowindow.open(map, marker));
+    } else {
+      console.warn(`[${title}] ${type} 실패 ❌`, status, addr);
+      if (fallback) {
+        fallback();
+      } else {
+        console.error(`[${title}] 최종 실패 ❌`, addr, status);
+      }
+    }
+  });
+}
+
+
+    // 3단계 fallback
+    function addMarkerWithFallback(shop, title = '') {
+      const newAddr = cleanNewAddress(shop.new_address || '');
+      const oldAddr = cleanOldAddress(shop.address || '');
+      const district = extractDistrict(shop.address || '');
+      const combined = district && title ? `${district} ${title}` : '';
+
+      // 1단계: new_address
+      searchAndMark(newAddr, title, 'new_address', () =>
+        // 2단계: address
+        searchAndMark(oldAddr, title, 'address', () =>
+          // 3단계: "서울 ○○구 + 상호명"
+          searchAndMark(combined, title, 'district+post_sj')
+        )
+      );
+    }
+
+    // 페이지네이션
+    let shops = [];
+    let page = 0;
+    const pageSize = 20;
+
+    function showPage(page) {
+      const start = page * pageSize;
+      const end = start + pageSize;
+      const subset = shops.slice(start, end);
+
+      subset.forEach((shop, idx) => {
+        const name = shop.post_sj || `가게 ${start + idx + 1}`;
+        addMarkerWithFallback(shop, name);
+      });
+    }
+
+    function showNextPage() {
+      if (page * pageSize >= shops.length) {
+        alert("더 이상 불러올 데이터가 없습니다.");
+        return;
+      }
+      showPage(page);
+      page++;
+    }
+
+    // JSON 로드
+    fetch('./assets/location_seperate/seoul_강남구.json')
+      .then(res => res.json())
+      .then(data => {
+        shops = data.DATA || [];
+        showNextPage();
+      })
+      .catch(err => console.error('JSON 로드 오류:', err));
+
+    document.getElementById('loadMore').addEventListener('click', showNextPage);
+  </script>
+</body>
+</html>
