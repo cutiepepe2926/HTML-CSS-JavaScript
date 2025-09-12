@@ -50,3 +50,10 @@
   max-height: 100%;
   object-fit: contain;
 }
+
+/* 음식 카테고리 버튼 공통(선택 고정) */
+.food-btn[aria-pressed="true"] {
+  background-color: #F8C74D !important; /* hover 색 유지 */
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  transform: translateY(-1px);
+}

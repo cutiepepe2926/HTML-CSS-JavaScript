@@ -65,15 +65,15 @@
 
     
     <!-- 임시 고정 핀 아이콘 -->
-    <img src="./assets/icons/colored_filled_pin.png" 
+    <img src="./assets/pin_icons/pin4.png" 
       alt="고정핀" 
-      class="absolute top-1/2 left-1/2 w-16 h-16 -translate-x-1/2 -translate-y-1/2 z-[1000] cursor-pointer"/>
+      class="absolute top-1/2 left-1/2 w-8 h-8 -translate-x-1/2 -translate-y-1/2 z-[1000] cursor-pointer"/>
        
     <!-- 지도 우측 하단 버튼 그룹 -->
     <div class="absolute bottom-4 right-4 z-[1000] flex items-center space-x-2 bg-none p-2 rounded-lg text-lg">
     
       <!-- 한식 -->
-      <button class="food-btn">
+      <button class="food-btn" aria-pressed="false">
         <span class="icon-wrap">
           <img src="./assets/map_icons/koreanfood_icon.png" alt="한식"/>
         </span>
@@ -81,7 +81,7 @@
       </button>
 
       <!-- 중식 -->
-      <button class="food-btn">
+      <button class="food-btn" aria-pressed="false">
         <span class="icon-wrap">
           <img src="./assets/map_icons/chinesefood_icon.png" alt="중식"/>
         </span>
@@ -89,7 +89,7 @@
       </button>
 
       <!-- 일식 -->
-      <button class="food-btn">
+      <button class="food-btn" aria-pressed="false">
         <span class="icon-wrap">
           <img src="./assets/map_icons/japanesefood_icon.png" alt="일식"/>
         </span>
@@ -97,7 +97,7 @@
       </button>
 
       <!-- 양식 -->
-      <button class="food-btn">
+      <button class="food-btn" aria-pressed="false">
         <span class="icon-wrap">
           <img src="./assets/map_icons/westernfood_icon.png" alt="양식"/>
         </span>
@@ -105,7 +105,7 @@
       </button>
 
       <!-- 분식 -->
-      <button class="food-btn">
+      <button class="food-btn" aria-pressed="false">
         <span class="icon-wrap">
           <img src="./assets/map_icons/schoolfood_icon.png" alt="분식"/>
         </span>
@@ -148,7 +148,6 @@
       <!-- JS에서 동적으로 내용을 채울 영역 -->
       <div id="shopContent" class="p-4"></div>
     </aside>
-
   </main>
 
   <!-- 리뷰 이미지 클릭 시 원본 크기로 사진 볼 수 있는 Lightbox Modal -->
@@ -177,7 +176,7 @@
   
 
   <!-- 카카오 맵 API 및 라이브러리 추가 -->
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0698fb5cbfd3626afb61d071e360de06&libraries=LIBRARY"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0698fb5cbfd3626afb61d071e360de06&libraries=services,clusterer"></script>
   <script>
     // 지도 생성
     //const map = L.map('map').setView([37.4979, 127.0276], 15);
@@ -203,60 +202,59 @@
       map.setLevel(level + 1);
     });
 
-
-    // 지도타입 컨트롤의 지도 또는 스카이뷰 버튼을 클릭하면 호출되어 지도타입을 바꾸는 함수입니다
-    function setMapType(maptype) { 
-        var roadmapControl = document.getElementById('btnRoadmap');
-        var skyviewControl = document.getElementById('btnSkyview'); 
-        if (maptype === 'roadmap') {
-            map.setMapTypeId(kakao.maps.MapTypeId.ROADMAP);    
-            roadmapControl.className = 'selected_btn';
-            skyviewControl.className = 'btn';
-        } else {
-            map.setMapTypeId(kakao.maps.MapTypeId.HYBRID);    
-            skyviewControl.className = 'selected_btn';
-            roadmapControl.className = 'btn';
-        }
-    }
-
-
     // 현재 위치 버튼 클릭 이벤트
     var currentMarker = null;
 
-    document.getElementById("currentLocationBtn").addEventListener("click", function () {
+    // 현재 위치로 지도 이동 + 마커 표시 (공용 함수)
+    function goToCurrentLocation() {
       if (!navigator.geolocation) {
-        alert("이 브라우저에서는 위치 정보가 지원되지 않습니다.");
+        console.warn("이 브라우저에서는 위치 정보가 지원되지 않습니다.");
         return;
       }
-
       navigator.geolocation.getCurrentPosition(
         function (pos) {
           var lat = pos.coords.latitude;
           var lng = pos.coords.longitude;
           var loc = new kakao.maps.LatLng(lat, lng);
 
-          // 지도 이동
           map.setCenter(loc);
           map.setLevel(3);
 
-          // 기존 마커 제거 후 새로 표시
           if (currentMarker) currentMarker.setMap(null);
           currentMarker = new kakao.maps.Marker({ position: loc });
           currentMarker.setMap(map);
-
-          // (선택) 인포윈도우
-          // var iw = new kakao.maps.InfoWindow({ content: '<div style="padding:6px 8px;">현재 위치</div>' });
-          // iw.open(map, currentMarker);
         },
         function (err) {
-          // 권한 거부, 타임아웃 등
-          alert("현재 위치를 가져올 수 없습니다. (" + err.message + ")");
+          console.warn("현재 위치를 가져올 수 없습니다. (" + err.message + ")");
+          // 필요 시: 기본 중심 유지(지금처럼) 또는 강남 등 원하는 좌표로 fallback 가능
+          // map.setCenter(new kakao.maps.LatLng(37.4979, 127.0276));
         },
         { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
       );
+    }
+    document.getElementById("currentLocationBtn").addEventListener("click", goToCurrentLocation);
+
+    // DOM이 준비되면 바로 현재 위치로 이동
+    window.addEventListener('DOMContentLoaded', goToCurrentLocation);
+    // 또는 window.addEventListener('load', goToCurrentLocation);
+
+    // 음식 버튼: 다중 선택 + 다시 클릭 시 해제
+    const foodBtns = document.querySelectorAll('.food-btn');
+
+    foodBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isActive = btn.getAttribute('aria-pressed') === 'true';
+        btn.setAttribute('aria-pressed', String(!isActive));
+        // 선택 상태 변화에 맞춰 필요한 필터 로직이 있으면 여기서 호출
+        // e.g., applyFoodFilter(getSelectedFoods());
+      });
     });
 
-
+    // 현재 선택된 항목 목록 얻기
+    function getSelectedFoods() {
+      return [...document.querySelectorAll('.food-btn[aria-pressed="true"]')]
+        .map(b => b.dataset.key || b.textContent.trim());
+    }
     // 좌측 사이드 탭 활성화 토글 유틸 (필요한 페이지에서 호출)
     function setActiveTab(tabName) {
       document.querySelectorAll('.side-btn').forEach(btn => {
@@ -272,7 +270,7 @@
     setActiveTab('map');
 
     // 안전 바인딩: id가 없거나 pointerEvents가 막혀 있어도 케어
-    const pin = document.getElementById('coloredPin') || document.querySelector('img[src$="colored_filled_pin.png"]');
+    const pin = document.getElementById('coloredPin') || document.querySelector('img[src$="./assets/pin_icons/pin4.png"]');
     const panel = document.getElementById('shopPanel');
     const btnClose = document.getElementById('panelClose');
     const shopContent = document.getElementById('shopContent');
@@ -296,7 +294,7 @@
             <h3 class="text-xl font-semibold">오오기리</h3>
             <p class="text-gray-500 text-sm">일식</p>
           </div>
-          <div class="flex items-center space-x-1 text-yellow-500">★★★★★</div>
+          <div class="flex items-center space-x-1 text-yellow-500">📌📌📌📌📌</div>
         </div>
 
         <!-- 연락처 / 영업시간 -->
@@ -346,6 +344,13 @@
       panel.classList.remove('translate-x-0');
       panel.classList.add('-translate-x-full');
     }
+  });
+
+  // 지도 클릭 시 좌측 슬라이드 닫기
+  const mapEl = document.getElementById('map');
+  mapEl.addEventListener('click', () => {
+    panel.classList.remove('translate-x-0');
+    panel.classList.add('-translate-x-full');
   });
 
   // ===== Lightbox =====
