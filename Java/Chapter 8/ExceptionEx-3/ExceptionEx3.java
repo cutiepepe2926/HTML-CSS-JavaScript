@@ -7,9 +7,10 @@ public class ExceptionEx3 {
             try {
                 result = number / (int)(Math.random() * 10);
                 System.out.println(result);
-            } catch (ArithmeticException e) {
+            } catch (ArithmeticException e) { 
+                // ArithmeticException이 발생하면 실행되는 코드
                 System.out.println("0");
-            }
-        }
+            } //try-catch의 끝
+        } //for문의 끝
     }
 }
